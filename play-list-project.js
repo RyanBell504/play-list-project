@@ -6,7 +6,8 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./slide-indicator.js";
-
+import "./arrow-button.js";
+import "./play-list-slide.js";
 
 /**
  * `play-list-project`
@@ -28,6 +29,7 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       ...this.t,
       title: "Title",
     };
+    this.slides = Array.from(this.querySelectorAll("play-list-slide"));
   }
 
   // Lit reactive properties
@@ -62,14 +64,32 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
+<div class="wrapper" @arrow-click="${this._arrowClickHandler}">
   <h3><span>${this.t.title}:</span> ${this.title}</h3>
   <slot></slot>
+  <arrow-button></arrow-button>
 </div>
-  <slot name="buttons">
-     <button left @click="${this._onClick}"><</button>
-  <button right @click="${this._onClick}">></button>
-  </slot>`;
+  `;
+  }
+
+  _arrowClickHandler(e) {
+    if (e.detail.direction === "left") {
+      this.index = (this.index - 1 + this.slides.length) % this.slides.length;
+    } else {
+      this.index = (this.index + 1) % this.slides.length;
+    }
+    this._updateSlides();
+  }
+
+  firstUpdated() {
+    this._updateSlides();
+  }
+
+  _updateSlides() {
+   this.slides.forEach((slide, index) => {
+      slide.style.display = index === this.index ? "block" : "none";
+    });
+
   }
 
   /**
