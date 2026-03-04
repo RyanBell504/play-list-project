@@ -23,13 +23,8 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
     this.slides = Array.from(this.querySelectorAll("play-list-slide"));
+    this.index = 0;
   }
 
   // Lit reactive properties
@@ -47,11 +42,17 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
+        max-width: 1100px;
+        color: var(--ddd-theme-default-potentialMidnight);
+        background-color: var(--ddd-theme-default-slateMaxLight);
+        border-radius: var(--ddd-border-md);
+        font-family: var(--ddd-font-primary);
+        margin: 0 auto;
+        padding: var(--ddd-spacing-4);
+        box-shadow: var(--ddd-shadow-md);
       }
       .wrapper {
+        position: relative;
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
@@ -64,14 +65,18 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper" @arrow-click="${this._arrowClickHandler}">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
+<div class="wrapper" @arrow-click="${this._arrowClickHandler}" @dot-click="${this._dotClickHandler}">
   <slot></slot>
   <arrow-button></arrow-button>
+  <div style="height: var(--ddd-spacing-4);"></div>
+  <play-list-indicator count="${this.slides.length}" index="${this.index}"></play-list-indicator>
 </div>
   `;
   }
-
+  _dotClickHandler(e) {
+    this.index = e.detail.index;
+    this._updateSlides();
+  }
   _arrowClickHandler(e) {
     if (e.detail.direction === "left") {
       this.index = (this.index - 1 + this.slides.length) % this.slides.length;

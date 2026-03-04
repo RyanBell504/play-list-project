@@ -21,17 +21,31 @@
                 return [super.styles,
                 css`
                 :host {
-                    display: inline-block;
-                    cursor: pointer;
-                    padding: var(--ddd-spacing-2);
-                    color: var(--ddd-theme-primary);
+                    position: absolute;
+                    inset: 0;
+                    pointer-events: none;
                 }
                 button {
-                    background: none;
-                    border: none;
-                    font-size: var(--ddd-font-size-l);
-                    color: inherit;
+                    position: absolute;
+                    pointer-events: auto;
+                    top: 50%;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    background-color: white;
+                    border: 2px solid #1f5f99;
+                    font-size: 24px;
+                    color: var(--ddd-theme-primary);
                     cursor: pointer;
+                }
+                button[left] {
+                    left: -24px;
+                }
+                button[right] {
+                    right: -24px;
+                }
+                button:hover {
+                    background-color: grey;
                 }
                 `];
             }
