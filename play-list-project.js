@@ -49,7 +49,7 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         font-family: var(--ddd-font-primary);
         margin: var(--ddd-spacing-4);
         padding: var(--ddd-spacing-4);
-        box-shadow: var(--ddd-shadow-md);
+        box-shadow: var(--ddd-shadow-md); 
       }
       .wrapper {
         position: relative;
