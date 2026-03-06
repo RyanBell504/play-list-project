@@ -22,30 +22,31 @@
                 css`
                 :host {
                     position: absolute;
-                    inset: 0;
+                    inset: var(--ddd-spacing-0);
                     pointer-events: none;
                 }
                 button {
                     position: absolute;
                     pointer-events: auto;
                     top: 50%;
-                    width: 42px;
-                    height: 42px;
+                    width: 32px;
+                    height: 32px;
                     border-radius: 50%;
-                    background-color: white;
-                    border: 2px solid #1f5f99;
-                    font-size: 24px;
-                    color: var(--ddd-theme-primary);
+                    background-color: var(--ddd-theme-default-white);
+                    border: var(--ddd-border-l) solid var(--ddd-theme-default-link);
+                    outline: 2px var(--ddd-theme-default-link) solid;
+                    font-size: var(--ddd-font-size-3xs);
+                    color: var(--ddd-theme-default-link);
                     cursor: pointer;
                 }
                 button[left] {
-                    left: -24px;
+                    left: -42px;
                 }
                 button[right] {
-                    right: -24px;
+                    right: -42px;
                 }
                 button:hover {
-                    background-color: grey;
+                    background-color: var(--ddd-theme-default-limestoneGray);
                 }
                 `];
             }

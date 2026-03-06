@@ -28,17 +28,17 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
         display: block;
       }
       h2 {
-        font-size: 14px;
-        letter-spacing: 2px;
+        font-size: var(--ddd-font-size-4xs);
+        letter-spacing: var(--ddd-ls-72-lg);
         text-transform: uppercase;
-        color: var(--play-list-slide-top-heading-color, var(--ddd-theme-primary));
+        color: var(--ddd-theme-default-link);
         margin: 0 0 12px 0;
         font-weight: var(--play-list-slide-top-heading-font-weight, var(--ddd-font-weight-bold));
         }
        h3 {
         font-size: var(--play-list-slide-second-heading-font-size, var(--ddd-font-size-l));
         margin: var(--ddd-spacing-2) 0 var(--ddd-spacing-2);
-        color: var(--play-list-slide-second-heading-color, var(--ddd-theme-secondary));
+        color: var(--ddd-theme-default-beaverBlue);
         font-weight: var(--play-list-slide-second-heading-font-weight, var(--ddd-font-weight-bold));
         }
       .slide {
@@ -46,12 +46,12 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
         line-height: 1.2;
         overflow-y: auto;
         overflow-anchor: none;
-        padding-top: 1px;
+        padding-top: var(--ddd-spacing-1);
       }
       .line {
         width: 50px;
         height: 2px;
-        background-color: black;
+        background-color: var(--ddd-theme-default-skyBlue);
         margin: 16px 0 24px 0;  
       }
     `];

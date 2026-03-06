@@ -46,16 +46,15 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
             cursor: pointer;
         }
         button.active {
-            background-color: lightblue;
+            background-color: var(--ddd-theme-default-skyBlue);
         }
         button:hover {
-            background-color: grey;
+            background-color: var(--ddd-theme-default-limestoneGray);
         }
         `];
     }
     
     render() {
-    
         return html`
         <div class="dots">
             ${Array.from({ length: this.count }).map((_, index) => html`

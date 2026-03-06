@@ -31,7 +31,6 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
       index: { type: Number },
     };
   }
@@ -42,12 +41,13 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        max-width: 1100px;
+        max-width: 800px;
+        max-height: 1000px;
         color: var(--ddd-theme-default-potentialMidnight);
         background-color: var(--ddd-theme-default-slateMaxLight);
         border-radius: var(--ddd-border-md);
         font-family: var(--ddd-font-primary);
-        margin: 0 auto;
+        margin: var(--ddd-spacing-4);
         padding: var(--ddd-spacing-4);
         box-shadow: var(--ddd-shadow-md);
       }
@@ -55,9 +55,6 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         position: relative;
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
       }
     `];
   }
@@ -68,11 +65,11 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
 <div class="wrapper" @arrow-click="${this._arrowClickHandler}" @dot-click="${this._dotClickHandler}">
   <slot></slot>
   <arrow-button></arrow-button>
-  <div style="height: var(--ddd-spacing-4);"></div>
   <play-list-indicator count="${this.slides.length}" index="${this.index}"></play-list-indicator>
-</div>
-  `;
-  }
+</div>`;}
+
+
+
   _dotClickHandler(e) {
     this.index = e.detail.index;
     this._updateSlides();
